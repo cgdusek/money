@@ -31,34 +31,34 @@ jobs:
           draft: false
           prerelease: true
 
-      # build & upload marketd
+      # build & upload denomoneyd
 
-      - name: Build marketd
+      - name: Build denomoneyd
         run: make build
 
-      - name: Upload marketd
-        id: upload-marketd-release-asset
+      - name: Upload denomoneyd
+        id: upload-denomoneyd-release-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: marketd
-          asset_name: marketd
+          asset_path: denomoneyd
+          asset_name: denomoneyd
           asset_content_type: application/bin
 
-      # build & upload marketd arm64
+      # build & upload denomoneyd arm64
 
-      - name: Build marketd arm64
+      - name: Build denomoneyd arm64
         run: GOARCH=arm64 make build
 
-      - name: Upload marketd arm64
-        id: upload-marketd-release-asset-arm
+      - name: Upload denomoneyd arm64
+        id: upload-denomoneyd-release-asset-arm
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: marketd
-          asset_name: marketd-arm
+          asset_path: denomoneyd
+          asset_name: denomoneyd-arm
           asset_content_type: application/bin

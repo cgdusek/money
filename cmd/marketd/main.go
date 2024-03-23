@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
+	"denomoney/app"
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
-	"github.com/pendulum-labs/market/app"
 	"github.com/tendermint/starport/starport/pkg/cosmoscmd"
 )
 

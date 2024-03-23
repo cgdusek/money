@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { Reader, Writer } from "protobufjs/minimal";
 
-export const protobufPackage = "pendulum-labs.market.market";
+export const protobufPackage = "pendulum-labs.denomoney.denomoney";
 
 export interface MsgCreatePool {
   creator: string;
@@ -54,7 +54,7 @@ export interface MsgCancelOrder {
 
 export interface MsgCancelOrderResponse {}
 
-export interface MsgMarketOrder {
+export interface MsgdenomoneyOrder {
   creator: string;
   denomAsk: string;
   denomBid: string;
@@ -63,7 +63,7 @@ export interface MsgMarketOrder {
   slippage: string;
 }
 
-export interface MsgMarketOrderResponse {}
+export interface MsgdenomoneyOrderResponse {}
 
 const baseMsgCreatePool: object = {
   creator: "",
@@ -947,7 +947,7 @@ export const MsgCancelOrderResponse = {
   },
 };
 
-const baseMsgMarketOrder: object = {
+const baseMsgdenomoneyOrder: object = {
   creator: "",
   denomAsk: "",
   denomBid: "",
@@ -956,8 +956,8 @@ const baseMsgMarketOrder: object = {
   slippage: "",
 };
 
-export const MsgMarketOrder = {
-  encode(message: MsgMarketOrder, writer: Writer = Writer.create()): Writer {
+export const MsgdenomoneyOrder = {
+  encode(message: MsgdenomoneyOrder, writer: Writer = Writer.create()): Writer {
     if (message.creator !== "") {
       writer.uint32(10).string(message.creator);
     }
@@ -979,10 +979,10 @@ export const MsgMarketOrder = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): MsgMarketOrder {
+  decode(input: Reader | Uint8Array, length?: number): MsgdenomoneyOrder {
     const reader = input instanceof Uint8Array ? new Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseMsgMarketOrder } as MsgMarketOrder;
+    const message = { ...baseMsgdenomoneyOrder } as MsgdenomoneyOrder;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1012,8 +1012,8 @@ export const MsgMarketOrder = {
     return message;
   },
 
-  fromJSON(object: any): MsgMarketOrder {
-    const message = { ...baseMsgMarketOrder } as MsgMarketOrder;
+  fromJSON(object: any): MsgdenomoneyOrder {
+    const message = { ...baseMsgdenomoneyOrder } as MsgdenomoneyOrder;
     if (object.creator !== undefined && object.creator !== null) {
       message.creator = String(object.creator);
     } else {
@@ -1047,7 +1047,7 @@ export const MsgMarketOrder = {
     return message;
   },
 
-  toJSON(message: MsgMarketOrder): unknown {
+  toJSON(message: MsgdenomoneyOrder): unknown {
     const obj: any = {};
     message.creator !== undefined && (obj.creator = message.creator);
     message.denomAsk !== undefined && (obj.denomAsk = message.denomAsk);
@@ -1058,8 +1058,8 @@ export const MsgMarketOrder = {
     return obj;
   },
 
-  fromPartial(object: DeepPartial<MsgMarketOrder>): MsgMarketOrder {
-    const message = { ...baseMsgMarketOrder } as MsgMarketOrder;
+  fromPartial(object: DeepPartial<MsgdenomoneyOrder>): MsgdenomoneyOrder {
+    const message = { ...baseMsgdenomoneyOrder } as MsgdenomoneyOrder;
     if (object.creator !== undefined && object.creator !== null) {
       message.creator = object.creator;
     } else {
@@ -1094,17 +1094,17 @@ export const MsgMarketOrder = {
   },
 };
 
-const baseMsgMarketOrderResponse: object = {};
+const baseMsgdenomoneyOrderResponse: object = {};
 
-export const MsgMarketOrderResponse = {
-  encode(_: MsgMarketOrderResponse, writer: Writer = Writer.create()): Writer {
+export const MsgdenomoneyOrderResponse = {
+  encode(_: MsgdenomoneyOrderResponse, writer: Writer = Writer.create()): Writer {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): MsgMarketOrderResponse {
+  decode(input: Reader | Uint8Array, length?: number): MsgdenomoneyOrderResponse {
     const reader = input instanceof Uint8Array ? new Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseMsgMarketOrderResponse } as MsgMarketOrderResponse;
+    const message = { ...baseMsgdenomoneyOrderResponse } as MsgdenomoneyOrderResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1116,18 +1116,18 @@ export const MsgMarketOrderResponse = {
     return message;
   },
 
-  fromJSON(_: any): MsgMarketOrderResponse {
-    const message = { ...baseMsgMarketOrderResponse } as MsgMarketOrderResponse;
+  fromJSON(_: any): MsgdenomoneyOrderResponse {
+    const message = { ...baseMsgdenomoneyOrderResponse } as MsgdenomoneyOrderResponse;
     return message;
   },
 
-  toJSON(_: MsgMarketOrderResponse): unknown {
+  toJSON(_: MsgdenomoneyOrderResponse): unknown {
     const obj: any = {};
     return obj;
   },
 
-  fromPartial(_: DeepPartial<MsgMarketOrderResponse>): MsgMarketOrderResponse {
-    const message = { ...baseMsgMarketOrderResponse } as MsgMarketOrderResponse;
+  fromPartial(_: DeepPartial<MsgdenomoneyOrderResponse>): MsgdenomoneyOrderResponse {
+    const message = { ...baseMsgdenomoneyOrderResponse } as MsgdenomoneyOrderResponse;
     return message;
   },
 };
@@ -1140,7 +1140,7 @@ export interface Msg {
   CreateOrder(request: MsgCreateOrder): Promise<MsgCreateOrderResponse>;
   CancelOrder(request: MsgCancelOrder): Promise<MsgCancelOrderResponse>;
   /** this line is used by starport scaffolding # proto/tx/rpc */
-  MarketOrder(request: MsgMarketOrder): Promise<MsgMarketOrderResponse>;
+  denomoneyOrder(request: MsgdenomoneyOrder): Promise<MsgdenomoneyOrderResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -1151,7 +1151,7 @@ export class MsgClientImpl implements Msg {
   CreatePool(request: MsgCreatePool): Promise<MsgCreatePoolResponse> {
     const data = MsgCreatePool.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Msg",
+      "pendulum-labs.denomoney.denomoney.Msg",
       "CreatePool",
       data
     );
@@ -1163,7 +1163,7 @@ export class MsgClientImpl implements Msg {
   CreateDrop(request: MsgCreateDrop): Promise<MsgCreateDropResponse> {
     const data = MsgCreateDrop.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Msg",
+      "pendulum-labs.denomoney.denomoney.Msg",
       "CreateDrop",
       data
     );
@@ -1175,7 +1175,7 @@ export class MsgClientImpl implements Msg {
   RedeemDrop(request: MsgRedeemDrop): Promise<MsgRedeemDropResponse> {
     const data = MsgRedeemDrop.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Msg",
+      "pendulum-labs.denomoney.denomoney.Msg",
       "RedeemDrop",
       data
     );
@@ -1187,7 +1187,7 @@ export class MsgClientImpl implements Msg {
   CreateOrder(request: MsgCreateOrder): Promise<MsgCreateOrderResponse> {
     const data = MsgCreateOrder.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Msg",
+      "pendulum-labs.denomoney.denomoney.Msg",
       "CreateOrder",
       data
     );
@@ -1199,7 +1199,7 @@ export class MsgClientImpl implements Msg {
   CancelOrder(request: MsgCancelOrder): Promise<MsgCancelOrderResponse> {
     const data = MsgCancelOrder.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Msg",
+      "pendulum-labs.denomoney.denomoney.Msg",
       "CancelOrder",
       data
     );
@@ -1208,15 +1208,15 @@ export class MsgClientImpl implements Msg {
     );
   }
 
-  MarketOrder(request: MsgMarketOrder): Promise<MsgMarketOrderResponse> {
-    const data = MsgMarketOrder.encode(request).finish();
+  denomoneyOrder(request: MsgdenomoneyOrder): Promise<MsgdenomoneyOrderResponse> {
+    const data = MsgdenomoneyOrder.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Msg",
-      "MarketOrder",
+      "pendulum-labs.denomoney.denomoney.Msg",
+      "denomoneyOrder",
       data
     );
     return promise.then((data) =>
-      MsgMarketOrderResponse.decode(new Reader(data))
+      MsgdenomoneyOrderResponse.decode(new Reader(data))
     );
   }
 }

@@ -2,7 +2,7 @@
 import * as Long from "long";
 import { util, configure, Writer, Reader } from "protobufjs/minimal";
 
-export const protobufPackage = "pendulumlabs.market.market";
+export const protobufPackage = "pendulumlabs.denomoney.denomoney";
 
 export interface Asset {
   active: boolean;

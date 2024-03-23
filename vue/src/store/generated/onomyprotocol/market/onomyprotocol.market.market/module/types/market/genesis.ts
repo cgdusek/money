@@ -1,16 +1,16 @@
 /* eslint-disable */
-import { Params } from "../market/params";
-import { Pool } from "../market/pool";
-import { Drop } from "../market/drop";
-import { Member } from "../market/member";
-import { Burnings } from "../market/burnings";
-import { Order } from "../market/order";
-import { Asset } from "../market/asset";
+import { Params } from "../denomoney/params";
+import { Pool } from "../denomoney/pool";
+import { Drop } from "../denomoney/drop";
+import { Member } from "../denomoney/member";
+import { Burnings } from "../denomoney/burnings";
+import { Order } from "../denomoney/order";
+import { Asset } from "../denomoney/asset";
 import { Writer, Reader } from "protobufjs/minimal";
 
-export const protobufPackage = "pendulum-labs.market.market";
+export const protobufPackage = "pendulum-labs.denomoney.denomoney";
 
-/** GenesisState defines the market module's genesis state. */
+/** GenesisState defines the denomoney module's genesis state. */
 export interface GenesisState {
   params: Params | undefined;
   poolList: Pool[];

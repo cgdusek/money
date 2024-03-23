@@ -4,21 +4,21 @@ import { StdFee } from "@cosmjs/launchpad";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
-import { MsgCreatePool } from "./types/market/tx";
-import { MsgCreateDrop } from "./types/market/tx";
-import { MsgCreateOrder } from "./types/market/tx";
-import { MsgMarketOrder } from "./types/market/tx";
-import { MsgRedeemDrop } from "./types/market/tx";
-import { MsgCancelOrder } from "./types/market/tx";
+import { MsgCreatePool } from "./types/denomoney/tx";
+import { MsgCreateDrop } from "./types/denomoney/tx";
+import { MsgCreateOrder } from "./types/denomoney/tx";
+import { MsgdenomoneyOrder } from "./types/denomoney/tx";
+import { MsgRedeemDrop } from "./types/denomoney/tx";
+import { MsgCancelOrder } from "./types/denomoney/tx";
 
 
 const types = [
-  ["/pendulumlabs.market.market.MsgCreatePool", MsgCreatePool],
-  ["/pendulumlabs.market.market.MsgCreateDrop", MsgCreateDrop],
-  ["/pendulumlabs.market.market.MsgCreateOrder", MsgCreateOrder],
-  ["/pendulumlabs.market.market.MsgMarketOrder", MsgMarketOrder],
-  ["/pendulumlabs.market.market.MsgRedeemDrop", MsgRedeemDrop],
-  ["/pendulumlabs.market.market.MsgCancelOrder", MsgCancelOrder],
+  ["/pendulumlabs.denomoney.denomoney.MsgCreatePool", MsgCreatePool],
+  ["/pendulumlabs.denomoney.denomoney.MsgCreateDrop", MsgCreateDrop],
+  ["/pendulumlabs.denomoney.denomoney.MsgCreateOrder", MsgCreateOrder],
+  ["/pendulumlabs.denomoney.denomoney.MsgdenomoneyOrder", MsgdenomoneyOrder],
+  ["/pendulumlabs.denomoney.denomoney.MsgRedeemDrop", MsgRedeemDrop],
+  ["/pendulumlabs.denomoney.denomoney.MsgCancelOrder", MsgCancelOrder],
   
 ];
 export const MissingWalletError = new Error("wallet is required");
@@ -51,12 +51,12 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
 
   return {
     signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
-    msgCreatePool: (data: MsgCreatePool): EncodeObject => ({ typeUrl: "/pendulumlabs.market.market.MsgCreatePool", value: MsgCreatePool.fromPartial( data ) }),
-    msgCreateDrop: (data: MsgCreateDrop): EncodeObject => ({ typeUrl: "/pendulumlabs.market.market.MsgCreateDrop", value: MsgCreateDrop.fromPartial( data ) }),
-    msgCreateOrder: (data: MsgCreateOrder): EncodeObject => ({ typeUrl: "/pendulumlabs.market.market.MsgCreateOrder", value: MsgCreateOrder.fromPartial( data ) }),
-    msgMarketOrder: (data: MsgMarketOrder): EncodeObject => ({ typeUrl: "/pendulumlabs.market.market.MsgMarketOrder", value: MsgMarketOrder.fromPartial( data ) }),
-    msgRedeemDrop: (data: MsgRedeemDrop): EncodeObject => ({ typeUrl: "/pendulumlabs.market.market.MsgRedeemDrop", value: MsgRedeemDrop.fromPartial( data ) }),
-    msgCancelOrder: (data: MsgCancelOrder): EncodeObject => ({ typeUrl: "/pendulumlabs.market.market.MsgCancelOrder", value: MsgCancelOrder.fromPartial( data ) }),
+    msgCreatePool: (data: MsgCreatePool): EncodeObject => ({ typeUrl: "/pendulumlabs.denomoney.denomoney.MsgCreatePool", value: MsgCreatePool.fromPartial( data ) }),
+    msgCreateDrop: (data: MsgCreateDrop): EncodeObject => ({ typeUrl: "/pendulumlabs.denomoney.denomoney.MsgCreateDrop", value: MsgCreateDrop.fromPartial( data ) }),
+    msgCreateOrder: (data: MsgCreateOrder): EncodeObject => ({ typeUrl: "/pendulumlabs.denomoney.denomoney.MsgCreateOrder", value: MsgCreateOrder.fromPartial( data ) }),
+    msgdenomoneyOrder: (data: MsgdenomoneyOrder): EncodeObject => ({ typeUrl: "/pendulumlabs.denomoney.denomoney.MsgdenomoneyOrder", value: MsgdenomoneyOrder.fromPartial( data ) }),
+    msgRedeemDrop: (data: MsgRedeemDrop): EncodeObject => ({ typeUrl: "/pendulumlabs.denomoney.denomoney.MsgRedeemDrop", value: MsgRedeemDrop.fromPartial( data ) }),
+    msgCancelOrder: (data: MsgCancelOrder): EncodeObject => ({ typeUrl: "/pendulumlabs.denomoney.denomoney.MsgCancelOrder", value: MsgCancelOrder.fromPartial( data ) }),
     
   };
 };

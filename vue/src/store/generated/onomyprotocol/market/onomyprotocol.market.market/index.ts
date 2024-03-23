@@ -1,13 +1,13 @@
 import { txClient, queryClient, MissingWalletError , registry} from './module'
 
-import { Asset } from "./module/types/market/asset"
-import { Burnings } from "./module/types/market/burnings"
-import { Drop } from "./module/types/market/drop"
-import { Member } from "./module/types/market/member"
-import { Order } from "./module/types/market/order"
-import { OrderResponse } from "./module/types/market/order"
-import { Params } from "./module/types/market/params"
-import { Pool } from "./module/types/market/pool"
+import { Asset } from "./module/types/denomoney/asset"
+import { Burnings } from "./module/types/denomoney/burnings"
+import { Drop } from "./module/types/denomoney/drop"
+import { Member } from "./module/types/denomoney/member"
+import { Order } from "./module/types/denomoney/order"
+import { OrderResponse } from "./module/types/denomoney/order"
+import { Params } from "./module/types/denomoney/params"
+import { Pool } from "./module/types/denomoney/pool"
 
 
 export { Asset, Burnings, Drop, Member, Order, OrderResponse, Params, Pool };
@@ -194,7 +194,7 @@ export default {
 	},
 	actions: {
 		init({ dispatch, rootGetters }) {
-			console.log('Vuex module: pendulum-labs.market.market initialized!')
+			console.log('Vuex module: pendulum-labs.denomoney.denomoney initialized!')
 			if (rootGetters['common/env/client']) {
 				rootGetters['common/env/client'].on('newblock', () => {
 					dispatch('StoreUpdate')
@@ -558,18 +558,18 @@ export default {
 		},
 		
 		
-		async sendMsgMarketOrder({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgdenomoneyOrder({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgMarketOrder(value)
+				const msg = await txClient.msgdenomoneyOrder(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgMarketOrder:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgdenomoneyOrder:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgMarketOrder:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgdenomoneyOrder:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -649,16 +649,16 @@ export default {
 			}
 		},
 		
-		async MsgMarketOrder({ rootGetters }, { value }) {
+		async MsgdenomoneyOrder({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgMarketOrder(value)
+				const msg = await txClient.msgdenomoneyOrder(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgMarketOrder:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgdenomoneyOrder:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgMarketOrder:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgdenomoneyOrder:Create Could not create message: ' + e.message)
 				}
 			}
 		},

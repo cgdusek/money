@@ -28,8 +28,8 @@ import (
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"github.com/pendulum-labs/market/x/market/keeper"
-	markettypes "github.com/pendulum-labs/market/x/market/types"
+	"denomoney/x/denomoney/keeper"
+	denomoneytypes "denomoney/x/denomoney/types"
 	"github.com/stretchr/testify/require"
 	"github.com/tendermint/tendermint/libs/log"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
@@ -49,13 +49,13 @@ var (
 
 // TestInput stores the various keepers required to test the exchange
 type TestInput struct {
-	AccountKeeper authkeeper.AccountKeeper
-	BankKeeper    bankkeeper.BaseKeeper
-	MintKeeper    mintkeeper.Keeper
-	Context       sdk.Context
-	Marshaler     codec.Codec
-	MarketKeeper  *keeper.Keeper
-	LegacyAmino   *codec.LegacyAmino
+	AccountKeeper   authkeeper.AccountKeeper
+	BankKeeper      bankkeeper.BaseKeeper
+	MintKeeper      mintkeeper.Keeper
+	Context         sdk.Context
+	Marshaler       codec.Codec
+	denomoneyKeeper *keeper.Keeper
+	LegacyAmino     *codec.LegacyAmino
 }
 
 // MakeTestLegacyCodec creates a legacy codec for use in testing
@@ -67,7 +67,7 @@ func MakeTestLegacyCodec() *codec.LegacyAmino {
 	sdk.RegisterLegacyAminoCodec(cdc)
 	ccodec.RegisterCrypto(cdc)
 	params.AppModuleBasic{}.RegisterLegacyAminoCodec(cdc)
-	markettypes.RegisterCodec(cdc)
+	denomoneytypes.RegisterCodec(cdc)
 	return cdc
 }
 
@@ -76,19 +76,19 @@ func MakeTestCodec() codec.Codec {
 	interfaceRegistry := codectypes.NewInterfaceRegistry()
 	std.RegisterInterfaces(interfaceRegistry)
 	ModuleBasics.RegisterInterfaces(interfaceRegistry)
-	markettypes.RegisterInterfaces(interfaceRegistry)
+	denomoneytypes.RegisterInterfaces(interfaceRegistry)
 	return codec.NewProtoCodec(interfaceRegistry)
 }
 
 func CreateTestEnvironment(t testing.TB) TestInput {
-	//poolKey := sdk.NewKVStoreKey(markettypes.PoolKeyPrefix)
-	storeKey := sdk.NewKVStoreKey(markettypes.StoreKey)
+	//poolKey := sdk.NewKVStoreKey(denomoneytypes.PoolKeyPrefix)
+	storeKey := sdk.NewKVStoreKey(denomoneytypes.StoreKey)
 	keyAuth := sdk.NewKVStoreKey(authtypes.StoreKey)
 	keyBank := sdk.NewKVStoreKey(banktypes.StoreKey)
 	keyStake := sdk.NewKVStoreKey(stakingtypes.StoreKey)
 	keyMint := sdk.NewKVStoreKey(minttypes.StoreKey)
 	keyParams := sdk.NewKVStoreKey(paramstypes.StoreKey)
-	memStoreKey := storetypes.NewMemoryStoreKey(markettypes.MemStoreKey)
+	memStoreKey := storetypes.NewMemoryStoreKey(denomoneytypes.MemStoreKey)
 	tkeyParams := sdk.NewTransientStoreKey(paramstypes.TStoreKey)
 
 	db := tmdb.NewMemDB()
@@ -141,17 +141,17 @@ func CreateTestEnvironment(t testing.TB) TestInput {
 	paramsKeeper.Subspace(banktypes.ModuleName)
 	paramsKeeper.Subspace(stakingtypes.ModuleName)
 	paramsKeeper.Subspace(minttypes.ModuleName)
-	paramsKeeper.Subspace(markettypes.ModuleName)
+	paramsKeeper.Subspace(denomoneytypes.ModuleName)
 
 	paramsSubspace := paramstypes.NewSubspace(cdc,
-		markettypes.Amino,
+		denomoneytypes.Amino,
 		storeKey,
 		memStoreKey,
-		"MarketParams",
+		"denomoneyParams",
 	)
 	// this is also used to initialize module accounts for all the map keys
 	maccPerms := map[string][]string{
-		markettypes.ModuleName:         {authtypes.Minter, authtypes.Burner},
+		denomoneytypes.ModuleName:      {authtypes.Minter, authtypes.Burner},
 		authtypes.FeeCollectorName:     nil,
 		minttypes.ModuleName:           {authtypes.Minter},
 		stakingtypes.BondedPoolName:    {authtypes.Burner, authtypes.Staking},
@@ -188,7 +188,7 @@ func CreateTestEnvironment(t testing.TB) TestInput {
 		cdc, keyMint, getSubspace(paramsKeeper, minttypes.ModuleName), &stakingKeeper,
 		accountKeeper, bankKeeper, authtypes.FeeCollectorName,
 	)
-	marketKeeper := keeper.NewKeeper(
+	denomoneyKeeper := keeper.NewKeeper(
 		cdc,
 		storeKey,
 		memStoreKey,
@@ -196,17 +196,17 @@ func CreateTestEnvironment(t testing.TB) TestInput {
 		bankKeeper,
 	)
 	// Initialize params
-	//marketKeeper.setID
-	marketKeeper.SetParams(ctx, markettypes.DefaultParams())
+	//denomoneyKeeper.setID
+	denomoneyKeeper.SetParams(ctx, denomoneytypes.DefaultParams())
 
 	return TestInput{
-		AccountKeeper: accountKeeper,
-		BankKeeper:    bankKeeper,
-		MintKeeper:    mintKeeper,
-		Context:       ctx,
-		Marshaler:     cdc,
-		LegacyAmino:   legacyCodec,
-		MarketKeeper:  marketKeeper,
+		AccountKeeper:   accountKeeper,
+		BankKeeper:      bankKeeper,
+		MintKeeper:      mintKeeper,
+		Context:         ctx,
+		Marshaler:       cdc,
+		LegacyAmino:     legacyCodec,
+		denomoneyKeeper: denomoneyKeeper,
 	}
 }
 
@@ -217,7 +217,7 @@ func getSubspace(k paramskeeper.Keeper, moduleName string) paramstypes.Subspace 
 }
 
 // Returns an amount postfixed by `denom` that represents approximately
-// the max amount in a single action that we want to support with the market module
+// the max amount in a single action that we want to support with the denomoney module
 func MaxSupportedCoin(denom string) string {
 	// 2^(128 - 16) - 1
 	return fmt.Sprintf("5192296858534827628530496329220095%s", denom)

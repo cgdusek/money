@@ -20,6 +20,8 @@ import CosmosIbcGoIbcCoreChannelV1 from './cosmos/ibc-go/ibc.core.channel.v1'
 import CosmosIbcGoIbcCoreClientV1 from './cosmos/ibc-go/ibc.core.client.v1'
 import CosmosIbcGoIbcCoreConnectionV1 from './cosmos/ibc-go/ibc.core.connection.v1'
 import CosmosIbcGoIbcCorePortV1 from './cosmos/ibc-go/ibc.core.port.v1'
+import DenomoneyPendulumlabsDenomoneyDenomoney from './denomoney/pendulumlabs.denomoney.denomoney'
+import DenomoneyPendulumlabsMarketMarket from './denomoney/pendulumlabs.market.market'
 import OnomyprotocolMarketOnomyprotocolMarketMarket from './onomyprotocol/market/onomyprotocol.market.market'
 import PendulumLabsMarketPendulumlabsMarketMarket from './pendulum-labs/market/pendulumlabs.market.market'
 
@@ -45,6 +47,8 @@ export default {
   CosmosIbcGoIbcCoreClientV1: load(CosmosIbcGoIbcCoreClientV1, 'ibc.core.client.v1'),
   CosmosIbcGoIbcCoreConnectionV1: load(CosmosIbcGoIbcCoreConnectionV1, 'ibc.core.connection.v1'),
   CosmosIbcGoIbcCorePortV1: load(CosmosIbcGoIbcCorePortV1, 'ibc.core.port.v1'),
+  DenomoneyPendulumlabsDenomoneyDenomoney: load(DenomoneyPendulumlabsDenomoneyDenomoney, 'pendulumlabs.denomoney.denomoney'),
+  DenomoneyPendulumlabsMarketMarket: load(DenomoneyPendulumlabsMarketMarket, 'pendulumlabs.market.market'),
   OnomyprotocolMarketOnomyprotocolMarketMarket: load(OnomyprotocolMarketOnomyprotocolMarketMarket, 'onomyprotocol.market.market'),
   PendulumLabsMarketPendulumlabsMarketMarket: load(PendulumLabsMarketPendulumlabsMarketMarket, 'pendulumlabs.market.market'),
   

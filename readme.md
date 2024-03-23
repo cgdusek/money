@@ -1,5 +1,5 @@
-# market
-**market** is a blockchain built using Cosmos SDK and Tendermint and created with [Starport](https://starport.com).
+# denomoney
+**denomoney** is a blockchain built using Cosmos SDK and Tendermint and created with [Starport](https://starport.com).
 
 Note: in order to regenerate proto files, install Ignite CLI v0.23.0 (do not use a later version until we update past SDK v0.45), `go mod tidy`, `rm -rf vendor` (you actually have to remove it for some reason), run `ignite generate proto-go`, then `go mod tidy` after that to clean up
 
@@ -40,11 +40,11 @@ After a draft release is created, make your final changes from the release page 
 ### Devnet Linux Install
 
 First download binary
-```curl https://github.com/pendulum-labs/market/releases/download/v0.0.4dev/marketd```
+```curl https://denomoney/releases/download/v0.0.4dev/denomoneyd```
 Second make the binary executable
-```chmod +x marketd```
+```chmod +x denomoneyd```
 Third move to /usr/local/bin
-```cp marketd /usr/local/bin```
+```cp denomoneyd /usr/local/bin```
 
 
 ## Learn more

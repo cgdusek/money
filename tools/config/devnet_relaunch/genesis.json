@@ -1,6 +1,6 @@
 {
   "genesis_time": "2023-09-28T16:49:43.017132956Z",
-  "chain_id": "market",
+  "chain_id": "denomoney",
   "initial_height": "1",
   "consensus_params": {
     "block": {
@@ -121778,7 +121778,7 @@
               {
                 "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
                 "description": {
-                  "moniker": "market",
+                  "moniker": "denomoney",
                   "identity": "",
                   "website": "",
                   "security_contact": "",
@@ -121891,7 +121891,7 @@
         }
       }
     },
-    "market": {
+    "denomoney": {
       "burningsList": [],
       "dropList": [],
       "memberList": [],
@@ -121900,7 +121900,7 @@
         "burn_coin": "anom",
         "burn_rate": "1000",
         "earn_rates": "0500,0300,0200",
-        "market_fee": "0030"
+        "denomoney_fee": "0030"
       },
       "poolList": []
     },

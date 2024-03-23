@@ -397,7 +397,7 @@
         }
       }
     },
-    "market": {
+    "denomoney": {
       "burningsList": [],
       "dropList": [],
       "memberList": [],
@@ -406,7 +406,7 @@
         "burn_coin": "anom",
         "burn_rate": "1000",
         "earn_rates": "0500,0300,0200",
-        "market_fee": "0030"
+        "denomoney_fee": "0030"
       },
       "poolList": []
     },

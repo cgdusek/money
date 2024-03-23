@@ -9,7 +9,7 @@
  * ---------------------------------------------------------------
  */
 
-export interface MarketAsset {
+export interface denomoneyAsset {
   active?: boolean;
   owner?: string;
   assetType?: string;
@@ -18,12 +18,12 @@ export interface MarketAsset {
   uid?: string;
 }
 
-export interface MarketBurnings {
+export interface denomoneyBurnings {
   denom?: string;
   amount?: string;
 }
 
-export interface MarketDrop {
+export interface denomoneyDrop {
   /** @format uint64 */
   uid?: string;
   owner?: string;
@@ -47,7 +47,7 @@ export interface MarketDrop {
   next2?: string;
 }
 
-export interface MarketMember {
+export interface denomoneyMember {
   pair?: string;
   denomA?: string;
   denomB?: string;
@@ -64,19 +64,19 @@ export interface MarketMember {
   protect?: string;
 }
 
-export type MarketMsgCancelOrderResponse = object;
+export type denomoneyMsgCancelOrderResponse = object;
 
-export type MarketMsgCreateDropResponse = object;
+export type denomoneyMsgCreateDropResponse = object;
 
-export type MarketMsgCreateOrderResponse = object;
+export type denomoneyMsgCreateOrderResponse = object;
 
-export type MarketMsgCreatePoolResponse = object;
+export type denomoneyMsgCreatePoolResponse = object;
 
-export type MarketMsgMarketOrderResponse = object;
+export type denomoneyMsgdenomoneyOrderResponse = object;
 
-export type MarketMsgRedeemDropResponse = object;
+export type denomoneyMsgRedeemDropResponse = object;
 
-export interface MarketOrder {
+export interface denomoneyOrder {
   /** @format uint64 */
   uid?: string;
   owner?: string;
@@ -94,7 +94,7 @@ export interface MarketOrder {
   next?: string;
 }
 
-export interface MarketOrderResponse {
+export interface denomoneyOrderResponse {
   /** @format uint64 */
   uid?: string;
   owner?: string;
@@ -115,12 +115,12 @@ export interface MarketOrderResponse {
 /**
  * Params defines the parameters for the module.
  */
-export interface MarketParams {
+export interface denomoneyParams {
   earn_rate?: string[];
   burn_rate?: string[];
 }
 
-export interface MarketPool {
+export interface denomoneyPool {
   pair?: string;
   denom1?: string;
   denom2?: string;
@@ -128,8 +128,8 @@ export interface MarketPool {
   drops?: string;
 }
 
-export interface MarketQueryAllAssetResponse {
-  asset?: MarketAsset[];
+export interface denomoneyQueryAllAssetResponse {
+  asset?: denomoneyAsset[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -143,8 +143,8 @@ export interface MarketQueryAllAssetResponse {
   pagination?: V1Beta1PageResponse;
 }
 
-export interface MarketQueryAllBurningsResponse {
-  burnings?: MarketBurnings[];
+export interface denomoneyQueryAllBurningsResponse {
+  burnings?: denomoneyBurnings[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -158,8 +158,8 @@ export interface MarketQueryAllBurningsResponse {
   pagination?: V1Beta1PageResponse;
 }
 
-export interface MarketQueryDropsResponse {
-  drop?: MarketDrop[];
+export interface denomoneyQueryDropsResponse {
+  drop?: denomoneyDrop[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -173,8 +173,8 @@ export interface MarketQueryDropsResponse {
   pagination?: V1Beta1PageResponse;
 }
 
-export interface MarketQueryAllMemberResponse {
-  member?: MarketMember[];
+export interface denomoneyQueryAllMemberResponse {
+  member?: denomoneyMember[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -188,8 +188,8 @@ export interface MarketQueryAllMemberResponse {
   pagination?: V1Beta1PageResponse;
 }
 
-export interface MarketQueryOrdersResponse {
-  order?: MarketOrder[];
+export interface denomoneyQueryOrdersResponse {
+  order?: denomoneyOrder[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -203,8 +203,8 @@ export interface MarketQueryOrdersResponse {
   pagination?: V1Beta1PageResponse;
 }
 
-export interface MarketQueryAllPoolResponse {
-  pool?: MarketPool[];
+export interface denomoneyQueryAllPoolResponse {
+  pool?: denomoneyPool[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -218,40 +218,40 @@ export interface MarketQueryAllPoolResponse {
   pagination?: V1Beta1PageResponse;
 }
 
-export interface MarketQueryGetAssetResponse {
-  asset?: MarketAsset;
+export interface denomoneyQueryGetAssetResponse {
+  asset?: denomoneyAsset;
 }
 
-export interface MarketQueryBookResponse {
-  book?: MarketOrderResponse[];
+export interface denomoneyQueryBookResponse {
+  book?: denomoneyOrderResponse[];
 }
 
-export interface MarketQueryGetBurningsResponse {
-  burnings?: MarketBurnings;
+export interface denomoneyQueryGetBurningsResponse {
+  burnings?: denomoneyBurnings;
 }
 
-export interface MarketQueryDropResponse {
-  drop?: MarketDrop;
+export interface denomoneyQueryDropResponse {
+  drop?: denomoneyDrop;
 }
 
-export interface MarketQueryGetMemberResponse {
-  member?: MarketMember;
+export interface denomoneyQueryGetMemberResponse {
+  member?: denomoneyMember;
 }
 
-export interface MarketQueryOrderResponse {
-  order?: MarketOrder;
+export interface denomoneyQueryOrderResponse {
+  order?: denomoneyOrder;
 }
 
-export interface MarketQueryGetPoolResponse {
-  pool?: MarketPool;
+export interface denomoneyQueryGetPoolResponse {
+  pool?: denomoneyPool;
 }
 
 /**
  * QueryParamsResponse is response type for the Query/Params RPC method.
  */
-export interface MarketQueryParamsResponse {
+export interface denomoneyQueryParamsResponse {
   /** params holds all the parameters of this module. */
-  params?: MarketParams;
+  params?: denomoneyParams;
 }
 
 export interface ProtobufAny {
@@ -520,7 +520,7 @@ export class HttpClient<SecurityDataType = unknown> {
 }
 
 /**
- * @title market/asset.proto
+ * @title denomoney/asset.proto
  * @version version not set
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
@@ -530,7 +530,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryAssetAll
    * @summary Queries a list of Asset items.
-   * @request GET:/pendulum-labs/market/market/asset
+   * @request GET:/pendulum-labs/denomoney/denomoney/asset
    */
   queryAssetAll = (
     query?: {
@@ -542,8 +542,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     },
     params: RequestParams = {},
   ) =>
-    this.request<MarketQueryAllAssetResponse, RpcStatus>({
-      path: `/pendulum-labs/market/market/asset`,
+    this.request<denomoneyQueryAllAssetResponse, RpcStatus>({
+      path: `/pendulum-labs/denomoney/denomoney/asset`,
       method: "GET",
       query: query,
       format: "json",
@@ -556,11 +556,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryAsset
    * @summary Queries a Asset by index.
-   * @request GET:/pendulum-labs/market/market/asset/{active}/{owner}/{assetType}
+   * @request GET:/pendulum-labs/denomoney/denomoney/asset/{active}/{owner}/{assetType}
    */
   queryAsset = (active: boolean, owner: string, assetType: string, params: RequestParams = {}) =>
-    this.request<MarketQueryGetAssetResponse, RpcStatus>({
-      path: `/pendulum-labs/market/market/asset/${active}/${owner}/${assetType}`,
+    this.request<denomoneyQueryGetAssetResponse, RpcStatus>({
+      path: `/pendulum-labs/denomoney/denomoney/asset/${active}/${owner}/${assetType}`,
       method: "GET",
       format: "json",
       ...params,
@@ -572,7 +572,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryBurningsAll
    * @summary Queries a list of Burnings items.
-   * @request GET:/pendulum-labs/market/market/burnings
+   * @request GET:/pendulum-labs/denomoney/denomoney/burnings
    */
   queryBurningsAll = (
     query?: {
@@ -584,8 +584,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     },
     params: RequestParams = {},
   ) =>
-    this.request<MarketQueryAllBurningsResponse, RpcStatus>({
-      path: `/pendulum-labs/market/market/burnings`,
+    this.request<denomoneyQueryAllBurningsResponse, RpcStatus>({
+      path: `/pendulum-labs/denomoney/denomoney/burnings`,
       method: "GET",
       query: query,
       format: "json",
@@ -598,11 +598,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryBurnings
    * @summary Queries a Burnings by index.
-   * @request GET:/pendulum-labs/market/market/burnings/{denom}
+   * @request GET:/pendulum-labs/denomoney/denomoney/burnings/{denom}
    */
   queryBurnings = (denom: string, params: RequestParams = {}) =>
-    this.request<MarketQueryGetBurningsResponse, RpcStatus>({
-      path: `/pendulum-labs/market/market/burnings/${denom}`,
+    this.request<denomoneyQueryGetBurningsResponse, RpcStatus>({
+      path: `/pendulum-labs/denomoney/denomoney/burnings/${denom}`,
       method: "GET",
       format: "json",
       ...params,
@@ -614,7 +614,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryDropAll
    * @summary Queries a list of Drop items.
-   * @request GET:/pendulum-labs/market/market/drop
+   * @request GET:/pendulum-labs/denomoney/denomoney/drop
    */
   queryDropAll = (
     query?: {
@@ -626,8 +626,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     },
     params: RequestParams = {},
   ) =>
-    this.request<MarketQueryDropsResponse, RpcStatus>({
-      path: `/pendulum-labs/market/market/drop`,
+    this.request<denomoneyQueryDropsResponse, RpcStatus>({
+      path: `/pendulum-labs/denomoney/denomoney/drop`,
       method: "GET",
       query: query,
       format: "json",
@@ -640,11 +640,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryDrop
    * @summary Queries a Drop by index.
-   * @request GET:/pendulum-labs/market/market/drop/{uid}/{owner}/{pair}
+   * @request GET:/pendulum-labs/denomoney/denomoney/drop/{uid}/{owner}/{pair}
    */
   queryDrop = (uid: string, owner: string, pair: string, params: RequestParams = {}) =>
-    this.request<MarketQueryDropResponse, RpcStatus>({
-      path: `/pendulum-labs/market/market/drop/${uid}/${owner}/${pair}`,
+    this.request<denomoneyQueryDropResponse, RpcStatus>({
+      path: `/pendulum-labs/denomoney/denomoney/drop/${uid}/${owner}/${pair}`,
       method: "GET",
       format: "json",
       ...params,
@@ -656,7 +656,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryBook
    * @summary Queries a list of Book items.
-   * @request GET:/pendulum-labs/market/market/book/{denomA}/{denomB}/{orderType}
+   * @request GET:/pendulum-labs/denomoney/denomoney/book/{denomA}/{denomB}/{orderType}
    */
   queryBook = (
     denomA: string,
@@ -671,8 +671,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     },
     params: RequestParams = {},
   ) =>
-    this.request<MarketQueryBookResponse, RpcStatus>({
-      path: `/pendulum-labs/market/market/book/${denomA}/${denomB}/${orderType}`,
+    this.request<denomoneyQueryBookResponse, RpcStatus>({
+      path: `/pendulum-labs/denomoney/denomoney/book/${denomA}/${denomB}/${orderType}`,
       method: "GET",
       query: query,
       format: "json",
@@ -685,7 +685,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryMemberAll
    * @summary Queries a list of Member items.
-   * @request GET:/pendulum-labs/market/market/member
+   * @request GET:/pendulum-labs/denomoney/denomoney/member
    */
   queryMemberAll = (
     query?: {
@@ -697,8 +697,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     },
     params: RequestParams = {},
   ) =>
-    this.request<MarketQueryAllMemberResponse, RpcStatus>({
-      path: `/pendulum-labs/market/market/member`,
+    this.request<denomoneyQueryAllMemberResponse, RpcStatus>({
+      path: `/pendulum-labs/denomoney/denomoney/member`,
       method: "GET",
       query: query,
       format: "json",
@@ -711,11 +711,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryMember
    * @summary Queries a Member by index.
-   * @request GET:/pendulum-labs/market/market/member/{pair}/{denomA}/{denomB}
+   * @request GET:/pendulum-labs/denomoney/denomoney/member/{pair}/{denomA}/{denomB}
    */
   queryMember = (pair: string, denomA: string, denomB: string, params: RequestParams = {}) =>
-    this.request<MarketQueryGetMemberResponse, RpcStatus>({
-      path: `/pendulum-labs/market/market/member/${pair}/${denomA}/${denomB}`,
+    this.request<denomoneyQueryGetMemberResponse, RpcStatus>({
+      path: `/pendulum-labs/denomoney/denomoney/member/${pair}/${denomA}/${denomB}`,
       method: "GET",
       format: "json",
       ...params,
@@ -727,7 +727,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryOrderAll
    * @summary Queries a list of Order items.
-   * @request GET:/pendulum-labs/market/market/order
+   * @request GET:/pendulum-labs/denomoney/denomoney/order
    */
   queryOrderAll = (
     query?: {
@@ -739,8 +739,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     },
     params: RequestParams = {},
   ) =>
-    this.request<MarketQueryOrdersResponse, RpcStatus>({
-      path: `/pendulum-labs/market/market/order`,
+    this.request<denomoneyQueryOrdersResponse, RpcStatus>({
+      path: `/pendulum-labs/denomoney/denomoney/order`,
       method: "GET",
       query: query,
       format: "json",
@@ -753,15 +753,15 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryOrder
    * @summary Queries a Order by index.
-   * @request GET:/pendulum-labs/market/market/order/{uid}
+   * @request GET:/pendulum-labs/denomoney/denomoney/order/{uid}
    */
   queryOrder = (
     uid: string,
     query?: { owner?: string; active?: boolean; orderType?: string; denomAsk?: string; denomBid?: string },
     params: RequestParams = {},
   ) =>
-    this.request<MarketQueryOrderResponse, RpcStatus>({
-      path: `/pendulum-labs/market/market/order/${uid}`,
+    this.request<denomoneyQueryOrderResponse, RpcStatus>({
+      path: `/pendulum-labs/denomoney/denomoney/order/${uid}`,
       method: "GET",
       query: query,
       format: "json",
@@ -774,11 +774,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryParams
    * @summary Parameters queries the parameters of the module.
-   * @request GET:/pendulum-labs/market/market/params
+   * @request GET:/pendulum-labs/denomoney/denomoney/params
    */
   queryParams = (params: RequestParams = {}) =>
-    this.request<MarketQueryParamsResponse, RpcStatus>({
-      path: `/pendulum-labs/market/market/params`,
+    this.request<denomoneyQueryParamsResponse, RpcStatus>({
+      path: `/pendulum-labs/denomoney/denomoney/params`,
       method: "GET",
       format: "json",
       ...params,
@@ -790,7 +790,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryPoolAll
    * @summary Queries a list of Pool items.
-   * @request GET:/pendulum-labs/market/market/pool
+   * @request GET:/pendulum-labs/denomoney/denomoney/pool
    */
   queryPoolAll = (
     query?: {
@@ -802,8 +802,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     },
     params: RequestParams = {},
   ) =>
-    this.request<MarketQueryAllPoolResponse, RpcStatus>({
-      path: `/pendulum-labs/market/market/pool`,
+    this.request<denomoneyQueryAllPoolResponse, RpcStatus>({
+      path: `/pendulum-labs/denomoney/denomoney/pool`,
       method: "GET",
       query: query,
       format: "json",
@@ -816,11 +816,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryPool
    * @summary Queries a Pool by index.
-   * @request GET:/pendulum-labs/market/market/pool/{pair}/{denom1}/{denom2}/{leader}
+   * @request GET:/pendulum-labs/denomoney/denomoney/pool/{pair}/{denom1}/{denom2}/{leader}
    */
   queryPool = (pair: string, denom1: string, denom2: string, leader: string, params: RequestParams = {}) =>
-    this.request<MarketQueryGetPoolResponse, RpcStatus>({
-      path: `/pendulum-labs/market/market/pool/${pair}/${denom1}/${denom2}/${leader}`,
+    this.request<denomoneyQueryGetPoolResponse, RpcStatus>({
+      path: `/pendulum-labs/denomoney/denomoney/pool/${pair}/${denom1}/${denom2}/${leader}`,
       method: "GET",
       format: "json",
       ...params,

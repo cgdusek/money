@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { Writer, Reader } from "protobufjs/minimal";
 
-export const protobufPackage = "pendulum-labs.market.market";
+export const protobufPackage = "pendulum-labs.denomoney.denomoney";
 
 export interface Pool {
   pair: string;

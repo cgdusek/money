@@ -1,19 +1,19 @@
 /* eslint-disable */
 import { Reader, util, configure, Writer } from "protobufjs/minimal";
 import * as Long from "long";
-import { Params } from "../market/params";
-import { Pool } from "../market/pool";
+import { Params } from "../denomoney/params";
+import { Pool } from "../denomoney/pool";
 import {
   PageRequest,
   PageResponse,
 } from "../cosmos/base/query/v1beta1/pagination";
-import { Drop } from "../market/drop";
-import { Member } from "../market/member";
-import { Burnings } from "../market/burnings";
-import { Order, OrderResponse } from "../market/order";
-import { Asset } from "../market/asset";
+import { Drop } from "../denomoney/drop";
+import { Member } from "../denomoney/member";
+import { Burnings } from "../denomoney/burnings";
+import { Order, OrderResponse } from "../denomoney/order";
+import { Asset } from "../denomoney/asset";
 
-export const protobufPackage = "pendulum-labs.market.market";
+export const protobufPackage = "pendulum-labs.denomoney.denomoney";
 
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
@@ -2383,7 +2383,7 @@ export class QueryClientImpl implements Query {
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Query",
+      "pendulum-labs.denomoney.denomoney.Query",
       "Params",
       data
     );
@@ -2393,7 +2393,7 @@ export class QueryClientImpl implements Query {
   Pool(request: QueryGetPoolRequest): Promise<QueryGetPoolResponse> {
     const data = QueryGetPoolRequest.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Query",
+      "pendulum-labs.denomoney.denomoney.Query",
       "Pool",
       data
     );
@@ -2405,7 +2405,7 @@ export class QueryClientImpl implements Query {
   PoolAll(request: QueryAllPoolRequest): Promise<QueryAllPoolResponse> {
     const data = QueryAllPoolRequest.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Query",
+      "pendulum-labs.denomoney.denomoney.Query",
       "PoolAll",
       data
     );
@@ -2417,7 +2417,7 @@ export class QueryClientImpl implements Query {
   Drop(request: QueryDropRequest): Promise<QueryDropResponse> {
     const data = QueryDropRequest.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Query",
+      "pendulum-labs.denomoney.denomoney.Query",
       "Drop",
       data
     );
@@ -2429,7 +2429,7 @@ export class QueryClientImpl implements Query {
   DropAll(request: QueryAllDropRequest): Promise<QueryDropsResponse> {
     const data = QueryAllDropRequest.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Query",
+      "pendulum-labs.denomoney.denomoney.Query",
       "DropAll",
       data
     );
@@ -2441,7 +2441,7 @@ export class QueryClientImpl implements Query {
   Member(request: QueryGetMemberRequest): Promise<QueryGetMemberResponse> {
     const data = QueryGetMemberRequest.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Query",
+      "pendulum-labs.denomoney.denomoney.Query",
       "Member",
       data
     );
@@ -2453,7 +2453,7 @@ export class QueryClientImpl implements Query {
   MemberAll(request: QueryAllMemberRequest): Promise<QueryAllMemberResponse> {
     const data = QueryAllMemberRequest.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Query",
+      "pendulum-labs.denomoney.denomoney.Query",
       "MemberAll",
       data
     );
@@ -2467,7 +2467,7 @@ export class QueryClientImpl implements Query {
   ): Promise<QueryGetBurningsResponse> {
     const data = QueryGetBurningsRequest.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Query",
+      "pendulum-labs.denomoney.denomoney.Query",
       "Burnings",
       data
     );
@@ -2481,7 +2481,7 @@ export class QueryClientImpl implements Query {
   ): Promise<QueryAllBurningsResponse> {
     const data = QueryAllBurningsRequest.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Query",
+      "pendulum-labs.denomoney.denomoney.Query",
       "BurningsAll",
       data
     );
@@ -2493,7 +2493,7 @@ export class QueryClientImpl implements Query {
   Order(request: QueryOrderRequest): Promise<QueryOrderResponse> {
     const data = QueryOrderRequest.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Query",
+      "pendulum-labs.denomoney.denomoney.Query",
       "Order",
       data
     );
@@ -2505,7 +2505,7 @@ export class QueryClientImpl implements Query {
   OrderAll(request: QueryAllOrderRequest): Promise<QueryOrdersResponse> {
     const data = QueryAllOrderRequest.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Query",
+      "pendulum-labs.denomoney.denomoney.Query",
       "OrderAll",
       data
     );
@@ -2517,7 +2517,7 @@ export class QueryClientImpl implements Query {
   Asset(request: QueryGetAssetRequest): Promise<QueryGetAssetResponse> {
     const data = QueryGetAssetRequest.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Query",
+      "pendulum-labs.denomoney.denomoney.Query",
       "Asset",
       data
     );
@@ -2529,7 +2529,7 @@ export class QueryClientImpl implements Query {
   AssetAll(request: QueryAllAssetRequest): Promise<QueryAllAssetResponse> {
     const data = QueryAllAssetRequest.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Query",
+      "pendulum-labs.denomoney.denomoney.Query",
       "AssetAll",
       data
     );
@@ -2541,7 +2541,7 @@ export class QueryClientImpl implements Query {
   Book(request: QueryBookRequest): Promise<QueryBookResponse> {
     const data = QueryBookRequest.encode(request).finish();
     const promise = this.rpc.request(
-      "pendulum-labs.market.market.Query",
+      "pendulum-labs.denomoney.denomoney.Query",
       "Book",
       data
     );

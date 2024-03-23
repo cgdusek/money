@@ -47,8 +47,8 @@ whitespace += $(whitespace)
 comma := ,
 build_tags_comma_sep := $(subst $(whitespace),$(comma),$(build_tags))
 
-ldflags = 	-X github.com/onomyprotocol/cosmos-sdk/version.Name=market \
-			-X github.com/onomyprotocol/cosmos-sdk/version.AppName=marketd \
+ldflags = 	-X github.com/onomyprotocol/cosmos-sdk/version.Name=denomoney \
+			-X github.com/onomyprotocol/cosmos-sdk/version.AppName=denomoneyd \
 			-X github.com/onomyprotocol/cosmos-sdk/version.Version=$(VERSION) \
 			-X github.com/onomyprotocol/cosmos-sdk/version.Commit=$(COMMIT) \
 			-X "github.com/onomyprotocol/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep)" \
@@ -60,7 +60,7 @@ all: install
 
 install: go.sum
 		@echo ls
-		go install $(BUILD_FLAGS) ./cmd/marketd
+		go install $(BUILD_FLAGS) ./cmd/denomoneyd
 
 go.sum: go.mod
 		@echo "--> Ensure dependencies have not been modified"
@@ -190,7 +190,7 @@ buf-stamp:
 	touch $@
 
 build: 
-	go build $(BUILD_FLAGS) ./cmd/marketd
+	go build $(BUILD_FLAGS) ./cmd/denomoneyd
 
 tools-clean:
 	rm -f proto-tools-stamp buf-stamp
